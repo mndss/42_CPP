@@ -28,6 +28,10 @@ void	Contact::setDarkSecret(std::string secret) {
 	this->_darkSecret = secret;
 }
 
+void	Contact::setId(int id) {
+	this->_id = id;
+}
+
 std::string	Contact::getFirstName(void) {
 	return this->_firstName;
 }
@@ -46,4 +50,8 @@ std::string	Contact::getPhoneNumber(void) {
 
 std::string	Contact::getDarkSecret(void) {
 	return this->_darkSecret;
+}
+
+std::string	Contact::getId(void) {
+	return std::to_string(this->_id);
 }

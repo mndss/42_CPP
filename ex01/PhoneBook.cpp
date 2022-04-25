@@ -3,11 +3,12 @@
 PhoneBook::PhoneBook(void) {
 	std::cout << "Welcome to your PhoneBook" << std::endl;
 	std::cout << "You can type commands: " << std::endl;
-	std::cout << "\"Add\" to add a new contact" << std::endl;
-	std::cout << "\"Search\" to display your contact list" << std::endl;
-	std::cout << "\"Exit\" to exit" << std::endl;
+	std::cout << "\"ADD\" to add a new contact" << std::endl;
+	std::cout << "\"SEARCH\" to display your contact list" << std::endl;
+	std::cout << "\"EXIT\" to exit" << std::endl;
 
 	this->_currentIndex = 0;
+	this->_total = 0;
 	return ;
 }
 
@@ -87,28 +88,82 @@ void	PhoneBook::addDarkSecret(void) {
 }
 
 void	PhoneBook::NewContact(void) {
+	if (_currentIndex == 8)
+		this->_currentIndex = 0;	
 	addFirstName();
 	addLastName();
 	addNickName();
 	addPhoneNumber();
 	addDarkSecret();
+	_listContact[_currentIndex].setId(_currentIndex + 1);
+	this->_currentIndex++;
+	if (_total < 8) {
+		this->_total++;
+	}
 }
 
-void	PhoneBook::ParseInput(std::string input) {
+std::string	PhoneBook::resizeString(std::string str) {
+	std::string newStr;
+
+	if (str.length() > 10) {
+		newStr = str.substr(0, 10);
+		newStr[9] = '.';
+		return newStr;
+	}
+	return str;
+} 
+
+void	PhoneBook::printAllContacts(void) {
+	std::cout << "|        ID|FIRST NAME| LAST NAME|  NICKNAME|" << std::endl;
+	std::cout << "*********************************************" << std::endl;
+	for (int i = 0; i < _total; i++) {
+		std::cout << std::right <<
+		'|' << std::setw(10) << resizeString(_listContact[i].getId()) << 
+		'|' << std::setw(10) << resizeString(_listContact[i].getFirstName()) <<
+		'|' << std::setw(10) << resizeString(_listContact[i].getLastName())<<
+		'|' << std::setw(10) << resizeString(_listContact[i].getNickName())<< 
+		'|' << std::endl;
+	}
+}
+
+void	PhoneBook::printContactByIndex(int index) {
+	std::cout << "FIRST NAME: " << this->_listContact[index].getFirstName() << std::endl; 
+	std::cout << "LAST NAME: " << this->_listContact[index].getLastName() << std::endl;
+	std::cout << "NICKNAME: " << this->_listContact[index].getNickName() << std::endl; 
+	std::cout << "PHONE NUMBER: " << this->_listContact[index].getPhoneNumber() << std::endl; 
+	std::cout << "DARK SECRET: " << this->_listContact[index].getDarkSecret() << std::endl; 
+}
+
+void	PhoneBook::searchOneContact(void) {
+	std::string	idString;
+	bool		validId;
+	int			id;
+
+	std::cout << "Inform a id: ";
+	do {
+		std::getline(std::cin, idString);
+		id = isValidId(idString);
+		std::cout << id << std::endl;
+		if (id)
+			printContactByIndex(id - 1);
+		else
+			std::cout << "Inform a valid id" << std::endl;
+	} while (!id);
+}
+
+bool	PhoneBook::ParseInput(std::string input) {
 	if (!input.compare("ADD")) {
-		std::cout << "follows workflow add" << std::endl;
 		NewContact();
 	}
 	else if (!input.compare("SEARCH")) {
-		// Printar todos os contatos
-		std::cout << "follows workflow Search" << std::endl;
+		printAllContacts();
+		searchOneContact();
 	}
-	else if (!input.compare("EXIT")) {
-		// Sair do loop
-		std::cout << "follows workflow exit" << std::endl;
-	}
+	else if (!input.compare("EXIT")) 
+		return false;
 	else
-		std::cout << "Command invalid, please send a valid command!!" << std::endl;
+		std::cout << "Command invalid, please type a valid command!!" << std::endl;
+	return true;
 }
 
 bool	PhoneBook::isValidName(std::string line) {
@@ -134,4 +189,14 @@ bool	PhoneBook::isValidNumber(std::string phoneNumber) {
 		}
 	}
 	return true;
+}
+
+int		PhoneBook::isValidId(std::string idString) {
+	int id;
+
+	if (idString.length() == 1 && isdigit(idString[0]))
+		id = stoi(idString);
+		if (id > 0 && id <= _total)
+			return id;
+	return 0;
 }

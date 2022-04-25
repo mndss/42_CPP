@@ -27,6 +27,10 @@ algorithm
 -
 cctype
 -
+iomanip
+-
+locale
+-
 
 ../googletest/googletest/include/gtest/gtest-assertion-result.h
 memory
@@ -382,6 +386,10 @@ gtest/internal/gtest-port.h
 cxxabi.h
 -
 acxx_demangle.h
+-
+
+/home/eduardo/project42/cpp00/ex01/PhoneBook.cpp
+PhoneBook.hpp
 -
 
 /home/eduardo/project42/cpp00/tests.cpp

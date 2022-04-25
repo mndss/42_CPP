@@ -22,7 +22,7 @@ class Contact {
 		std::string	getNickName(void);
 		std::string	getPhoneNumber(void);
 		std::string	getDarkSecret(void);
-		int			getId(void);
+		std::string	getId(void);
 
 	private:
 		std::string	_firstName;

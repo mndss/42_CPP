@@ -4,11 +4,14 @@
 
 int	main(void) {
 	std::string line;
-	PhoneBook phonebook;
+	PhoneBook	phonebook;
+	bool		runPhonebook;
 
-	while (true) {
+	runPhonebook = true;
+	while (runPhonebook) {
+		std::cout << "Command: "; 
 		std::getline(std::cin, line);
-		phonebook.ParseInput(line);
+		runPhonebook = phonebook.ParseInput(line);
 	}
 	return 0;
 }

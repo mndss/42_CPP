@@ -7,7 +7,6 @@
 using namespace std;
 
 TEST(AddContact, setFirstNameNormalName) {
-	PhoneBook phone;
 	Contact contact;
 	contact.setFirstName("Eduardo");
 	string name = contact.getFirstName();
@@ -16,7 +15,6 @@ TEST(AddContact, setFirstNameNormalName) {
 }
 
 TEST(AddContact, setFirstNameWithNumbers) {
-	PhoneBook phone;
 	Contact contact;
 	contact.setFirstName("Eduardo 42");
 	string name = contact.getFirstName();
@@ -25,7 +23,6 @@ TEST(AddContact, setFirstNameWithNumbers) {
 }
 
 TEST(AddContact, setFirstNameTestWithoutName) {
-	PhoneBook phone;
 	Contact contact;
 	contact.setFirstName("");
 	string name = contact.getFirstName();
@@ -34,7 +31,6 @@ TEST(AddContact, setFirstNameTestWithoutName) {
 }
 
 TEST(AddContact, setFirstNameTestCompostName) {
-	PhoneBook phone;
 	Contact contact;
 	contact.setFirstName("Luiz parça");
 	string name = contact.getFirstName();
@@ -44,7 +40,6 @@ TEST(AddContact, setFirstNameTestCompostName) {
 
 TEST(AddContact, setFirstNameTestInvalidName) {
 	PhoneBook phone;
-	Contact contact;
 	string name = "!@#$%!@%@#$";
 
 	EXPECT_EQ(phone.isValidName(name), false);
@@ -53,7 +48,6 @@ TEST(AddContact, setFirstNameTestInvalidName) {
 //==================================================================================
 
 TEST(AddContact, setLastNameNormalName) {
-	PhoneBook phone;
 	Contact contact;
 	contact.setLastName("Mendes");
 	string name = contact.getLastName();
@@ -62,7 +56,6 @@ TEST(AddContact, setLastNameNormalName) {
 }
 
 TEST(AddContact, setLastNameWithNumbers) {
-	PhoneBook phone;
 	Contact contact;
 	contact.setLastName("Mendes 42");
 	string name = contact.getLastName();
@@ -71,7 +64,6 @@ TEST(AddContact, setLastNameWithNumbers) {
 }
 
 TEST(AddContact, setLastNameTestWithoutName) {
-	PhoneBook phone;
 	Contact contact;
 	contact.setLastName("");
 	string name = contact.getLastName();
@@ -80,12 +72,11 @@ TEST(AddContact, setLastNameTestWithoutName) {
 }
 
 TEST(AddContact, setLastNameTestCompostName) {
-	PhoneBook phone;
 	Contact contact;
-	contact.setLastName("parça");
+	contact.setLastName("luiz parça");
 	string name = contact.getLastName();
 
-	EXPECT_EQ(name, "parça");
+	EXPECT_EQ(name, "luiz parça");
 }
 
 //=========================================================
@@ -144,7 +135,6 @@ TEST(ValidNumber, onlySimbols) {
 //=============================================================
 
 TEST(darkSecret, validSecret) {
-	PhoneBook phone;
 	Contact contact;
 	string secret = "viemos em paz \0/";
 
@@ -153,7 +143,6 @@ TEST(darkSecret, validSecret) {
 }
 
 TEST(darkSecret, validSecret2) {
-	PhoneBook phone;
 	Contact contact;
 	string secret = "salve quebrada";
 
@@ -162,10 +151,27 @@ TEST(darkSecret, validSecret2) {
 }
 
 TEST(darkSecret, withoutSecret) {
-	PhoneBook phone;
 	Contact contact;
 	string secret = "";
 
 	contact.setDarkSecret(secret);
 	EXPECT_EQ(contact.getDarkSecret(), secret);
 }
+
+//=============================================================================================
+
+TEST(validID, crazyValuesToId) {
+	PhoneBook phone;
+	
+	phone.NewContact();
+	phone.NewContact();
+
+	EXPECT_EQ(phone.isValidId("Salve"), 0);
+	EXPECT_EQ(phone.isValidId("9999999999999999"), 0);
+	EXPECT_EQ(phone.isValidId("9"), 0);
+	EXPECT_EQ(phone.isValidId("1"), 1);
+	EXPECT_EQ(phone.isValidId("2"), 2);
+	EXPECT_EQ(phone.isValidId("-12452"), 0);
+}
+
+//===============================================================================================
