@@ -4,7 +4,6 @@
 # include <iostream>
 # include <string>
 # include <cctype>
-# include <algorithm>
 
 class Contact {
 	public:

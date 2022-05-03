@@ -4,7 +4,6 @@
 # include <Contact.hpp>
 # include <string.h>
 # include <iostream>
-# include <algorithm>
 # include <cctype>
 # include <iomanip>
 # include <locale>
