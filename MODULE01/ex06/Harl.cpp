@@ -24,7 +24,7 @@ void	Harl::_error(void) {
 
 int		Harl::getLevel(std::string level) {
 	std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	int i = 0; 
+	int i = 0;
 
 	while (i < 4) {
 		if (levels[i] == level)
@@ -40,14 +40,21 @@ void	Harl::printLevelAndAbove(int level) {
 	{
 	case 0:
 		(this->*(f[level++]))();
+		std::cout << std::endl;
+		__attribute__ ((fallthrough));
 	case 1:
 		(this->*(f[level++]))();
+		std::cout << std::endl;
+		__attribute__ ((fallthrough));
 	case 2:
 		(this->*(f[level++]))();
+		std::cout << std::endl;
+		__attribute__ ((fallthrough));
 	case 3:
 		(this->*(f[level++]))();
-		break ;
-	default:	
+		std::cout << std::endl;
+		__attribute__ ((fallthrough));
+	default:
 		break;
 	}
 }
