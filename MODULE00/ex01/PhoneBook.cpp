@@ -139,11 +139,10 @@ void	PhoneBook::searchOneContact(void) {
 	bool		validId;
 	int			id;
 
-	std::cout << "Inform a id: ";
 	do {
+		std::cout << "Inform a id: ";
 		std::getline(std::cin, idString);
 		id = isValidId(idString);
-		std::cout << id << std::endl;
 		if (id)
 			printContactByIndex(id - 1);
 		else
