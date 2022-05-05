@@ -31,7 +31,7 @@ int		Harl::getLevel(std::string level) {
 			return i;
 		i++;
 	}
-	return 0;
+	return -1;
 }
 
 void	Harl::printLevelAndAbove(int level) {
@@ -51,10 +51,11 @@ void	Harl::printLevelAndAbove(int level) {
 		std::cout << std::endl;
 		__attribute__ ((fallthrough));
 	case 3:
-		(this->*(f[level++]))();
+		(this->*(f[level]))();
 		std::cout << std::endl;
-		__attribute__ ((fallthrough));
+		break ;
 	default:
+		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 		break;
 	}
 }
