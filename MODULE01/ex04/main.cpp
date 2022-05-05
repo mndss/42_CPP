@@ -1,6 +1,6 @@
 #include <iostream>
-#include <string>
 #include <fstream>
+#include <string>
 #include <sstream>
 
 std::string findAndReplace(std::string content, std::string s1, std::string s2) {
@@ -11,8 +11,9 @@ std::string findAndReplace(std::string content, std::string s1, std::string s2) 
 		found = content.find(s1);
 		strOut.append(content.substr(0, found));
 		strOut.append(s2);
-		content = content.substr((found + s1.length()), std::string::npos);
+		content = content.substr(found + s1.size(), content.size());
 	}
+	strOut.append(content);
 	return strOut;
 }
 
@@ -21,14 +22,15 @@ std::string	openAndReadFileIn(std::string fileIn) {
 
 	buffer << std::ifstream(fileIn).rdbuf();
 	if (!buffer)
-		std::cout << "Somthing was wrong to open file" << std::endl; 
+		std::cout << "Somthing was wrong to open file" << std::endl;
+	std::ifstream(fileIn).close();
 	return buffer.str();
 }
 
 int	main(int argc, char *argv[]) {
 
 	if (argc != 4) {
-		std::cout << "Missing arguments" << std::endl;
+		std::cout << "Number of arguemnts invalid" << std::endl;
 		return 1;
 	}
 
@@ -49,5 +51,6 @@ int	main(int argc, char *argv[]) {
 	fileOut.open(filename, std::ios_base::out);
 	strOut = findAndReplace(fileInContent, argv[2], argv[3]);
 	fileOut << strOut;
+	fileOut.close();
 	return 0;
 }
