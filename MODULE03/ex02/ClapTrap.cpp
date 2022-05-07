@@ -40,10 +40,13 @@ ClapTrap& ClapTrap::operator=(ClapTrap const &src) {
 
 void	ClapTrap::attack(const std::string &target) {
 
-	if (this->_energy == 0)
+	if (this->_energy == 0) {
+		std::cout << "ClapTrap " << this->_name <<  " not have energy enought to attack" << std::endl;
 		return ;
+	}
 	if (this->_hitPoints == 0) {
-		std::cout << "ClapTrap died" << std::endl;
+		std::cout << "ClapTrap" << this->_name << " is died" << std::endl;
+		return ;
 	}
 	std::cout << "ClapTrap " << this->_name << " attacks " << target << ", causing " <<
 	this->_attackDamage << " points of damage!" << std::endl;
