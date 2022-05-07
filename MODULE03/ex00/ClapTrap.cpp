@@ -28,6 +28,7 @@ ClapTrap::~ClapTrap(void) {
 
 ClapTrap& ClapTrap::operator=(ClapTrap const &src) {
 
+	std::cout << "Assignment operator called" << std::endl;
 	if (this != &src) {
 		this->_name = src._name;
 		this->_hitPoints = src._hitPoints;
