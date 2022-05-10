@@ -21,8 +21,7 @@ PresidentialPardonForm::~PresidentialPardonForm(void) {
 	return ;
 }
 
-void	PresidentialPardonForm::execute(Bureaucrat const &executor) {
-	this->beSign((Bureaucrat &)executor);
+void	PresidentialPardonForm::execute(Bureaucrat const &executor) const {
 	if (!this->canExecute((Bureaucrat &)executor)) {
 		return ;
 	}

@@ -20,15 +20,16 @@ class AForm {
 		AForm& operator=(const AForm &src);
 		~AForm(void);
 
-		std::string	getName(void);
-		bool		getStatus(void);
-		int			getGradeToSign(void);
-		int			getGradeToExec(void);
+		std::string	getName(void) const;
+		bool		getStatus(void) const;
+		int			getGradeToSign(void) const;
+		int			getGradeToExec(void) const;
 		void		beSign(Bureaucrat &bureaucrat);
 		void		signForm(Bureaucrat &bureaucrat);
 		
-		virtual void	execute(Bureaucrat const &executor) = 0;
-		virtual bool	canExecute(Bureaucrat &executor);
+		virtual void	execute(Bureaucrat const &executor) const = 0 ;
+		virtual bool	canExecute(Bureaucrat const &executor) const ;
+
 		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char * what() const throw();

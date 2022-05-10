@@ -28,11 +28,11 @@ Bureaucrat::~Bureaucrat(void) {
 	return ;
 }
 
-std::string	Bureaucrat::getName(void) {
+std::string	Bureaucrat::getName(void) const {
 	return _name;
 }
 
-int			Bureaucrat::getGrade(void) {
+int			Bureaucrat::getGrade(void) const{
 	return _grade;
 }
 
@@ -63,7 +63,6 @@ void		Bureaucrat::executeForm(AForm const &form) {
 const char * Bureaucrat::GradeTooHighException::what() const throw() {
 	return ("Bureaucrat grade is too high");
 }
-
 
 const char * Bureaucrat::GradeTooLowException::what() const throw() {
 	return ("Bureaucrat grade is too low");

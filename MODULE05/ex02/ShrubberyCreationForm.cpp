@@ -24,13 +24,12 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void) {
 	return ;
 }
 
-void	ShrubberyCreationForm::execute(Bureaucrat const &executor) {
+void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
 
 	std::string fileName;
 	std::ofstream file;
 	
-	this->beSign((Bureaucrat &)executor);
-	if (!canExecute((Bureaucrat &)executor)) {
+	if (!canExecute(executor)) {
 		return ;
 	}
 	fileName = _target + "_shrubbery";

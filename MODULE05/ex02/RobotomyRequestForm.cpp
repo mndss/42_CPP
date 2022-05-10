@@ -21,9 +21,8 @@ RobotomyRequestForm::~RobotomyRequestForm(void) {
 	return ;
 }
 
-void	RobotomyRequestForm::execute(Bureaucrat const &executor) {
+void	RobotomyRequestForm::execute(Bureaucrat const &executor) const {
 
-	this->beSign((Bureaucrat &)executor);
 	if (!this->canExecute((Bureaucrat &)executor)) {
 		return ;
 	}

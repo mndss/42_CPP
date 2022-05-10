@@ -30,19 +30,19 @@ AForm::~AForm(void) {
 	return ;
 }
 
-std::string	AForm::getName(void) {
+std::string	AForm::getName(void) const {
 	return _name;
 }
 
-bool		AForm::getStatus(void) {
+bool		AForm::getStatus(void) const {
 	return _isSigned;
 }
 
-int			AForm::getGradeToSign(void) {
+int			AForm::getGradeToSign(void) const {
 	return _gradeReqToSign;
 }
 
-int			AForm::getGradeToExec(void) {
+int			AForm::getGradeToExec(void) const {
 	return _gradeReqToExec;
 }
 
@@ -55,18 +55,15 @@ void		AForm::beSign(Bureaucrat &bureaucrat) {
 	return ;
 }
 
-bool		AForm::canExecute(Bureaucrat &executor) {
+bool		AForm::canExecute(Bureaucrat const &executor) const {
 	if (_isSigned == true ) {
 		if (executor.getGrade() <= _gradeReqToExec)
 			return true; 
-		else {
+		else
 			throw AForm::BureaucratCantExecException();
-			return false;
-		}
-	} else {
+	} else 
 		throw AForm::FormNotSignedException();
-		return false;
-	}
+	
 }
 
 void		AForm::signForm(Bureaucrat &bureaucrat) {
