@@ -34,7 +34,7 @@ std::string	Form::getName(void) {
 	return _name;
 }
 
-bool		Form::getState(void) {
+bool		Form::getStatus(void) {
 	return _isSigned;
 }
 
@@ -76,7 +76,7 @@ const char *	Form::GradeTooLowException::what() const throw() {
 }
 
 std::ostream&	operator<<(std::ostream& output, Form &src) {
-	output << "Form " << src.getName() << " current status is " << src.getState() << 
+	output << "Form " << src.getName() << " current status is " << src.getStatus() << 
 	" grade to sign is " << src.getGradeToSign() << " grade to execute is " << src.getGradeToExec();
 	return output;
 }

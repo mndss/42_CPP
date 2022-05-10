@@ -19,7 +19,7 @@ class Form {
 		~Form(void);
 
 		std::string	getName(void);
-		bool		getState(void);
+		bool		getStatus(void);
 		int			getGradeToSign(void);
 		int			getGradeToExec(void);
 		void		beSign(Bureaucrat &bureaucrat);
