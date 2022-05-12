@@ -18,12 +18,14 @@ std::string findAndReplace(std::string content, std::string s1, std::string s2) 
 }
 
 std::string	openAndReadFileIn(std::string fileIn) {
-	std::stringstream buffer;
+	std::ifstream		in;
+	std::stringstream	buffer;
 
-	buffer << std::ifstream(fileIn).rdbuf();
+	in.open(fileIn.c_str(), std::ifstream::in);
+	buffer << in.rdbuf();
 	if (!buffer)
 		std::cout << "Somthing was wrong to open file" << std::endl;
-	std::ifstream(fileIn).close();
+	in.close();
 	return buffer.str();
 }
 
@@ -38,7 +40,7 @@ int	main(int argc, char *argv[]) {
 		std::cout << "strings can't be void" << std::endl;
 		return 2;
 	}
-	std::fstream		fileOut;
+	std::ofstream		fileOut;
 	std::string			filename;
 	std::string			fileInContent;
 	std::string			strOut;
@@ -48,7 +50,7 @@ int	main(int argc, char *argv[]) {
 	fileInContent = openAndReadFileIn(argv[1]);
 	if (fileInContent.empty())
 		return 3;
-	fileOut.open(filename, std::ios_base::out);
+	fileOut.open(filename.c_str(), std::ofstream::out);
 	strOut = findAndReplace(fileInContent, argv[2], argv[3]);
 	fileOut << strOut;
 	fileOut.close();
