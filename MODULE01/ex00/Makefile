@@ -14,6 +14,9 @@ all: $(NAME)
 $(NAME): $(SRC)
 	$(CC) -g $(CFLAGs) $(SRC) -o $(NAME) -I ./
 
+valgrind: $(NAME)
+	 valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+
 clean:
 	$(RM) $(NAME)
 
