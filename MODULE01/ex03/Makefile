@@ -1,7 +1,7 @@
 NAME = unnecessaryViolence
 
 CC = c++ 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -std=c++98
 SRC =	Weapon.cpp \
 		HumanA.cpp \
 		HumanB.cpp \
