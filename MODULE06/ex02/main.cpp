@@ -35,15 +35,15 @@ void	identify(Base& p) {
 	try {
 		A typeA = dynamic_cast<A&>(p);
 		std::cout << "Type A" << std::endl;
-	} catch (std::bad_cast &bc) {
+	} catch (std::exception &bc) {
 		try {
 			B typeB = dynamic_cast<B&>(p);
 			std::cout << "Type B" << std::endl;
-		} catch (std::bad_cast &bc) {
+		} catch (std::exception &bc) {
 			try {
 				C typeC = dynamic_cast<C&>(p);
 				std::cout << "Type C" << std::endl;
- 			} catch (std::bad_cast &bc) {
+ 			} catch (std::exception &bc) {
 				std::cout << "Invalid reference" << std::endl;
 			}
 		}
